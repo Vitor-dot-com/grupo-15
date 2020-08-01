@@ -1,5 +1,6 @@
 # grupo-15
-#####Esse projeto é um desafio proposto pelo BNDES.
+## Esse projeto é um desafio proposto pelo BNDES.
+
 **Problema:**
 _Como acompanhar as queimadas no Brasil?_
 
@@ -18,5 +19,6 @@ _Realizar acompanhamento via alertas criados por civis e classificar a intensida
 
 
 **Caso de Uso**
+
 ![UseCaseDiagram1](https://user-images.githubusercontent.com/46661562/89107112-23df8e80-d405-11ea-9b56-7a40205db27a.png)
 
