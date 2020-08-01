@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informar Foco de queimada/incêndio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <header class="container d-flex justify-content-center">
+        <h1>#Alertar foco</h1>
+    </header>
+
+    <main>
+        <div class="container mt-5">
+            <form novalidate class="needs-validation" method="POST">
+                <div class="form-group">
+                    <label for="nome" class="col-md-2 form-control-label"><strong>Nome</strong></label>
+                    <input type="text" name="nome" id="nome" placeholder="Nome completo" class="form-control col-md-6" required>
+                </div>
+                
+                <!-- é possível validar dados e saber se a pessoa existe somente com o cpf e data de nascimento, porém essa funcionalidade ficará desabilitada.  -->
+
+                <div class="form-group">
+                    <label for="cpf" class="col-md-2 form-control-label"><strong>CPF</strong></label>
+                    <input type="text" name="cpf" id="cpf" placeholder="CPF" class="form-control col-md-6" required>
+                </div>
+                <div class="form-group">
+                    <label for="nasc" class="col-md-2 form-control-label"><strong>Nascimento</strong></label>
+                    <input type="date" name="nasc" id="nasc" class="form-control col-md-4" placeholder="NASCIMENTO" required>
+                </div>
+
+                <!-- validar o endereço https://viacep.com.br/ws/01001000/json/ -->
+                <div class="form-group">
+                    <label for="cep" class="form-control-label"><strong>Cep</strong></label>
+                    <input type="text" name="cep" id="cep" class="form-control col-md-4" placeholder="CEP" required>
+                </div>
+
+                <div class="form-gorup">
+                    <label for="estado" class="col-md-4 form-control-label"><strong>Estado do foco</strong></label>
+                    <select name="estado" id="estado" class="custom-select col-md-6">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+            </div>
+            <div class="container form-group d-flex flex-column mt-5">
+                <label for="detalhes" class="col-md-2 form-control-label mt-2"><strong>Detalhes</strong></label>
+                <textarea name="detalhes" id="detalhes" cols="30" rows="10" class="align-items-center col-md-12  form-control mt-2 "></textarea>
+            </div>
+            
+            <div class="container d-flex justify-content-center">
+                <div class="form-group align-items-center">
+                    <button type="submit" class="btn btn-dark mt-5">Alertar!</button>
+                </div>
+            </div>
+
+        </form>
+    
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+   
+   <script>
+        
+        $(()=>{
+            $('form').on('submit', e =>{
+                const form = e.target;
+
+                if(form.checkValidity()===false){
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                $(form).addClass('was-validated');
+            });
+        });
+
+    </script>
+
+</body>
+</html>
