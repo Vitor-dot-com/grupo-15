@@ -32,7 +32,7 @@ class Foco{
         this.quantidade ++;
     }
 
-    setUF(uf){
+    setUFE(uf){
         this.uf = uf;
     }
 }
@@ -86,11 +86,12 @@ alertar.addEventListener("click",function(e){
     detalhe = document.querySelector("#detalhes").value;
 
     foco = new Foco(cpf,cep,detalhe);
-    foco.setUF(json.uf);
+    foco.setUFE(json.uf);
     console.log("instanciar");
     console.log(pessoa);
     console.log(foco);
     adicionarFoco(pessoa,foco);
+    debugger
 
 });
 
@@ -127,6 +128,7 @@ function adicionarFoco(pessoa,foco){
     console.log("metodo adicionar");
     console.log(pessoa);
     console.log(foco);
+    debugger
 
     if(localStorage.getItem("focos")!=null){
         var arrayPessoa = getListaDePessoas();
