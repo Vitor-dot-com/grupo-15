@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Tela principal</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/Style.css">
 </head>
   <body>
     
@@ -17,15 +18,7 @@
         <main>
 
             <div class="mapa mt-5">
-              <style>
-                #svg-map path { fill:grey }
-                #svg-map text { fill:#fff; font:12px Arial-BoldMT, sans-serif; cursor:pointer }
-                #svg-map a{ text-decoration:none }
-                #svg-map a:hover { cursor:pointer; text-decoration:none }
-                #svg-map a:hover path{ fill:#D3D3D3 !important }
-                #svg-map .circle { fill:#66ccff }
-                #svg-map a:hover .circle { fill:#D3D3D3 !important; cursor:pointer }
-              </style>
+              
               <svg version="1.1" id="svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="450px" height="460px" viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve">
                 <g>
                   <a xlink:href="#to">
@@ -378,18 +371,7 @@
 
   </div>
 
-    <script>
-      var x = document.querySelector("body");
-      x.addEventListener("click",function(e){
-        var local = e.target.parentElement.attributes[0].textContent;
-
-        console.log(e.target);
-        console.log(local);
-        local = local.replace('#','');
-        sessionStorage.setItem("state",local);
-        window.location = "./listagem.html";
-      });
-    </script>
+    <script src="../controller/MainController.js"></script>
 
     </body>
     </html>
