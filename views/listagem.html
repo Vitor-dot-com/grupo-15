@@ -30,7 +30,7 @@
     <div class="container">
         <div class="d-flex flex-column">
 
-            <div class="form-gorup mt-10">
+            <div class="form-gorup mt-10" id="main_list">
                 <label for="estado" class="col-sm-4 form-control-label"><strong>UF</strong></label>
                 <select name="estado" id="estado" class="custom-select col-sm-6">
                         <option value="AC">Acre</option>
@@ -65,6 +65,7 @@
 
 
             <ul class="list-group mt-10">
+
                 <li class="list-group-item list-group-item-action">
                     <div class="d-flex flex-column">
                         <main>
@@ -83,20 +84,18 @@
 
                     </div>
                 </li>
-            </ul>
 
-            <ul class="list-group mt-10">
                 <li class="list-group-item list-group-item-action">
                     <div class="d-flex flex-column">
                         <main>
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex flex-column">
-                                    <strong>Mirante das canoas.</strong>
+                                    <strong>Floresta da tijuca</strong>
                                     <small>33 notificações</small>
                                 </div>
                                 <div class="d-flex flex-column">
-                                    <span class="badge badge-danger">83</span>
-                                    <span><small>ontem</small></span>
+                                    <span class="badge badge-warning">23</span>
+                                    <span><small>Hoje</small></span>
 
                                 </div>
                             </div>
@@ -104,31 +103,15 @@
 
                     </div>
                 </li>
+
             </ul>
 
-
-            <ul class="list-group mt-10">
-                <li class="list-group-item list-group-item-action">
-                    <div class="d-flex flex-column">
-                        <main>
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex flex-column">
-                                    <strong>Praia Prainha.</strong>
-                                    <small>33 notificações</small>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <span class="badge badge-success">13</span>
-                                    <span><small>ontem</small></span>
-
-                                </div>
-                            </div>
-                        </main>
-
-                    </div>
-                </li>
-            </ul>
+        
         </div>
     </div>
+
+    <script src="../controller/ListarController.js"></script>
+
     <script>
         UF = sessionStorage.getItem("state");
         h = document.querySelectorAll("option");

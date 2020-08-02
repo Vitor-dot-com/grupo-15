@@ -1,8 +1,33 @@
-import Pessoa from "../model/Pessoa";
+//const { default: Pessoa } = require("../model/Pessoa");
+var s;
 
-var p = new Pessoa("Jonas Goes","111.222.333-44","30/07/1991");
-p.setEmail("jonas@jonas.com");
-console.log(p);
+//p = new Pessoa("Jonas","asdf","asdf");
+
+//Foi adicionado aqui porque os imports não estavam funcionando.
+
+var arrayPessoa = [];
+var arrayFoco = [];
+
+class Pessoa{
+    constructor(nome,cpf,nascimento,email){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.nascimento = nascimento;
+        this.email = email
+    }
+}
+
+class Foco{
+    constructor(cpf,cep,descricao){
+        this.cpf = cpf;
+        this.cep = cep;
+        this.descricao = descricao;
+        this.status = true;
+    } 
+    setDownStatus(){
+        this.status = false;
+    }
+}
 
 var json = null;
 buscarCep = document.querySelector("#cep");
@@ -21,6 +46,7 @@ buscarCep.addEventListener("input",function(e){
             setTimeout(() => {  
                 json = JSON.parse(connect.responseText);  
                 setUF(json.uf.toLowerCase());
+                console.log(connect.responseText);
             }, 2000);
 
         }
@@ -34,13 +60,40 @@ buscarCep.addEventListener("input",function(e){
     
 });
 
+
 alertar = document.querySelector("#alertar");
-alertar.addEventListener("click",function (e){
+alertar.addEventListener("click",function(e){
+    
+    //Informações de quem criou o alerta
     nome = document.querySelector("#nome").value;
     cpf = document.querySelector("#cpf").value;
     data = document.querySelector("#nasc").valueAsDate;
-    console.log(data);
-    console.log(nome);
+    email = document.querySelector("#email").value;
+    
+    
+    pessoa = new Pessoa(nome,cpf,data,email)
+    arrayPessoa.push(pessoa);
+    
+    //Informações sobre o foco;
+    cep = document.querySelector("#cep").value;
+    detalhe = document.querySelector("#detalhes").value;
+
+    foco = new Foco(cpf,cep,detalhe);
+    arrayFoco.push(foco);
+    
+    if(localStorage.getItem("pessoas")==null){
+        localStorage.setItem("pessoas",JSON.stringify(arrayPessoa));
+        localStorage.setItem("focos",JSON.stringify(arrayFoco));
+    }
+    
+    else
+    {
+        arrayPessoa = JSON.parse(localStorage.getItem("pessoas"))
+        arrayFoco = JSON.parse(localStorage.getItem("focos"));
+        arrayPessoa.push(JSON.parse(JSON.stringify(pessoa)));
+        arrayFoco.push(JSON.parse(JSON.stringify(foco)));
+    }
+
 });
 
 function setUF(e){
@@ -51,17 +104,3 @@ function setUF(e){
         }
     }
 }
-
-// Desatualizado, não utilizar.
-$(() => {
-    $('form').on('click', e => {
-        const form = e.target;
-
-        if (form.checkValidity() === false) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        $(form).addClass('was-validated');
-    });
-})

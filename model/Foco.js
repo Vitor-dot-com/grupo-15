@@ -1,4 +1,4 @@
-import Pessoa from "./Pessoa.js";
+import {Pessoa} from "./Pessoa.js";
 
 export default class Foco{
 
@@ -35,15 +35,14 @@ export default class Foco{
     }
 
     
-}
-
-function novaPessoa(nome,cpf,data,email){
-    let pessoa = new Pessoa(nome,cpf,data);
-    pessoa.setEmail(email);
-    return pessoa;
-}
-
-function novoFoco(nome,cpf,data,email,cep,descricao){
-    let foco = new Foco(ovaPessoa(nome,cpf,data,email),cep,descricao);
-    return foco;
+    novaPessoa(nome,cpf,data,email){
+        let pessoa = new Pessoa(nome,cpf,data);
+        pessoa.setEmail(email);
+        return pessoa;
+    }
+    
+    novoFoco(nome,cpf,data,email,cep,descricao){
+        let foco = new Foco(ovaPessoa(nome,cpf,data,email),cep,descricao);
+        return foco;
+    }
 }
