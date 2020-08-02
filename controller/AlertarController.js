@@ -1,7 +1,5 @@
+//import Pessoa from "../model/Pessoa";
 //const { default: Pessoa } = require("../model/Pessoa");
-var s;
-
-//p = new Pessoa("Jonas","asdf","asdf");
 
 //Foi adicionado aqui porque os imports não estavam funcionando.
 
@@ -19,13 +17,20 @@ class Pessoa{
 
 class Foco{
     constructor(cpf,cep,descricao){
+        this.quantidade ++;
         this.cpf = cpf;
         this.cep = cep;
         this.descricao = descricao;
         this.status = true;
     } 
     setDownStatus(){
-        this.status = false;
+        if(this.quantidade===0)
+            this.status = false;
+        else
+            this.quantidade--;
+    }
+    updateQTD(){
+        this.quantidade ++;
     }
 }
 
@@ -81,17 +86,17 @@ alertar.addEventListener("click",function(e){
     foco = new Foco(cpf,cep,detalhe);
     arrayFoco.push(foco);
     
-    if(localStorage.getItem("pessoas")==null){
-        localStorage.setItem("pessoas",JSON.stringify(arrayPessoa));
-        localStorage.setItem("focos",JSON.stringify(arrayFoco));
-    }
-    
-    else
-    {
+    if(localStorage.getItem("pessoas")!=null){
         arrayPessoa = JSON.parse(localStorage.getItem("pessoas"))
         arrayFoco = JSON.parse(localStorage.getItem("focos"));
         arrayPessoa.push(JSON.parse(JSON.stringify(pessoa)));
         arrayFoco.push(JSON.parse(JSON.stringify(foco)));
+        
+    }
+    else
+    {
+        localStorage.setItem("pessoas",JSON.stringify(arrayPessoa));
+        localStorage.setItem("focos",JSON.stringify(arrayFoco));
     }
 
 });
