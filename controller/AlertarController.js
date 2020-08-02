@@ -3,8 +3,6 @@
 
 //Foi adicionado aqui porque os imports não estavam funcionando.
 
-var arrayPessoa = [];
-var arrayFoco = [];
 
 class Pessoa{
     constructor(nome,cpf,nascimento,email){
@@ -84,20 +82,8 @@ alertar.addEventListener("click",function(e){
     detalhe = document.querySelector("#detalhes").value;
 
     foco = new Foco(cpf,cep,detalhe);
-    arrayFoco.push(foco);
     
-    if(localStorage.getItem("pessoas")!=null){
-        arrayPessoa = JSON.parse(localStorage.getItem("pessoas"))
-        arrayFoco = JSON.parse(localStorage.getItem("focos"));
-        arrayPessoa.push(JSON.parse(JSON.stringify(pessoa)));
-        arrayFoco.push(JSON.parse(JSON.stringify(foco)));
-        
-    }
-    else
-    {
-        localStorage.setItem("pessoas",JSON.stringify(arrayPessoa));
-        localStorage.setItem("focos",JSON.stringify(arrayFoco));
-    }
+    adicionarFoco(pessoa,foco);
 
 });
 
@@ -107,5 +93,45 @@ function setUF(e){
         if(e===x[i].value.toLowerCase()){
             x[i].selected = true;
         }
+    }
+}
+
+function getListaDePessoas(){
+    if(localStorage.getItem("pessoas")!=null)
+    {
+        var pessoas_salvas = localStorage.getItem("pessoas");
+        var json_pessoas = JSON.parse(pessoas_salvas);
+        return json_pessoas;
+    }
+    return null;
+}
+
+function getListaDeFocos(){
+    if(localStorage.getItem("focos")!=null)
+    {
+        var focos_salvos = localStorage.getItem("focos");
+        var json_focos = JSON.parse(focos_salvos);
+        return json_focos;
+    }
+    return null;
+}
+
+function adicionarFoco(pessoa,foco){
+    if(localStorage.getItem("focos")!=null){
+        var arrayPessoa = getListaDePessoas();
+        var arrayFoco = getListaDeFocos();
+        arrayPessoa.push(pessoa);
+        arrayFoco.push(foco);
+        var tmp_pessoa = JSON.stringify(arrayPessoa);
+        var tmp_foco = JSON.stringify(arrayFoco);
+        localStorage.setItem("focos",tmp_foco);
+        localStorage.setItem("pessoas",tmp_pessoa);
+        
+    }
+    else
+    {
+        
+        localStorage.setItem("pessoas",JSON.stringify(pessoa));
+        localStorage.setItem("focos",JSON.stringify(foco));
     }
 }
