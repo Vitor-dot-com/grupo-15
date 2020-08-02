@@ -1,3 +1,6 @@
+//import Pessoa from "../model/Pessoa";
+//import Foco from "../model/Foco";
+
 var json = null;
 buscarCep = document.querySelector("#cep");
 buscarCep.addEventListener("input",function(e){
