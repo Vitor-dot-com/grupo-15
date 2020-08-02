@@ -1,5 +1,3 @@
-arrayFoco = [];
-arrayPessoa = [];
 
 if(localStorage.getItem("pessoas")!=null){
     var arrayPessoa = JSON.parse(localStorage.getItem("pessoas"));
@@ -52,36 +50,36 @@ function adicionarLista(){
 
 
 
-function criarLi(o){
+function criarLi(objFoco){
     var li = document.createElement('li');
     li.classList.toggle("list-group-item");
     li.classList.toggle("list-group-item-action");
-    li.appendChild(criarDivPrincipal(o))
+    li.appendChild(criarDivPrincipal(objFoco))
     return li;
 }
 
-function criarDivPrincipal(o){
+function criarDivPrincipal(objFoco){
     var div = document.createElement('div'); //d-flex flex-column
     div.classList.toggle("d-flex");
     div.classList.toggle("flex-column");
-    div.appendChild(criarMain(o));
+    div.appendChild(criarMain(objFoco));
     return div;
 }
 
 
 
-function criarMain(o){
+function criarMain(objFoco){
     var main = document.createElement('main');
-    main.criarSubDivDoMain(o);
+    main.criarSubDivDoMain(objFoco);
     return main;
 }
 
-function criarSubDivDoMain(o){
+function criarSubDivDoMain(objFoco){
     var subDiv = document.createElement('div'); // justify-content-between
     subDiv.classList.toggle("d-flex");
     subDiv.classList.toggle("justify-content-between");
-    subDiv.appendChild(criarSubDivComONomeDoLocal(o.cep,o.descricao));
-    subDiv.appendChild(criarItemcomBadge(o.quantidade));
+    subDiv.appendChild(criarSubDivComONomeDoLocal(objFoco.cep,objFoco.descricao));
+    subDiv.appendChild(criarItemcomBadge(contagem(objFoco.uf)));
     return subDiv;
 
 }
@@ -114,4 +112,16 @@ function criarItemcomBadge(q){
     div.appendChild(b);
     return div;
 
+}
+
+function contagem(UF){
+    var tmp = localStorage.getItem("pessoas");
+    var pessoa = JSON.parse(tmp);
+    var total = 0;
+    for(i = 0; i<pessoa.length; i++){       
+        if(UF===pessoa[i].cep.toLowerCase()){
+         total++;
+        }
+    }
+    return total;
 }

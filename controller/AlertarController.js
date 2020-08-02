@@ -2,7 +2,7 @@
 //const { default: Pessoa } = require("../model/Pessoa");
 
 //Foi adicionado aqui porque os imports não estavam funcionando.
-
+var json = null;
 
 class Pessoa{
     constructor(nome,cpf,nascimento,email){
@@ -18,6 +18,7 @@ class Foco{
         this.quantidade ++;
         this.cpf = cpf;
         this.cep = cep;
+        this.uf  = "";
         this.descricao = descricao;
         this.status = true;
     } 
@@ -30,9 +31,13 @@ class Foco{
     updateQTD(){
         this.quantidade ++;
     }
+
+    setUF(uf){
+        this.uf = uf;
+    }
 }
 
-var json = null;
+
 buscarCep = document.querySelector("#cep");
 buscarCep.addEventListener("input",function(e){
 
@@ -75,14 +80,16 @@ alertar.addEventListener("click",function(e){
     
     
     pessoa = new Pessoa(nome,cpf,data,email)
-    arrayPessoa.push(pessoa);
     
     //Informações sobre o foco;
     cep = document.querySelector("#cep").value;
     detalhe = document.querySelector("#detalhes").value;
 
     foco = new Foco(cpf,cep,detalhe);
-    
+    foco.setUF(json.uf);
+    console.log("instanciar");
+    console.log(pessoa);
+    console.log(foco);
     adicionarFoco(pessoa,foco);
 
 });
@@ -117,6 +124,10 @@ function getListaDeFocos(){
 }
 
 function adicionarFoco(pessoa,foco){
+    console.log("metodo adicionar");
+    console.log(pessoa);
+    console.log(foco);
+
     if(localStorage.getItem("focos")!=null){
         var arrayPessoa = getListaDePessoas();
         var arrayFoco = getListaDeFocos();
@@ -130,7 +141,7 @@ function adicionarFoco(pessoa,foco){
     }
     else
     {
-        
+
         localStorage.setItem("pessoas",JSON.stringify(pessoa));
         localStorage.setItem("focos",JSON.stringify(foco));
     }
