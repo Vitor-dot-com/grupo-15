@@ -129,6 +129,22 @@
             </ul>
         </div>
     </div>
+    <script>
+        UF = sessionStorage.getItem("state");
+        h = document.querySelectorAll("option");
+        
+        
+        for(i = 0; i<h.length; i++){
+           // if(UF.to===h[i].value)
+            
+           if(UF===h[i].value.toLowerCase()){
+            h[i].selected = true;
+           }
+        }
+
+        
+      
+    </script>
 </body>
 
 </html>
