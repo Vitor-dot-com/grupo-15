@@ -1,9 +1,13 @@
-//import Pessoa from "../model/Pessoa";
-//import Foco from "../model/Foco";
+import Pessoa from "../model/Pessoa";
+
+var p = new Pessoa("Jonas Goes","111.222.333-44","30/07/1991");
+p.setEmail("jonas@jonas.com");
+console.log(p);
 
 var json = null;
 buscarCep = document.querySelector("#cep");
 buscarCep.addEventListener("input",function(e){
+
     cep = e.target.value;
     if(cep.length>=8){
         console.log(cep)
@@ -16,12 +20,18 @@ buscarCep.addEventListener("input",function(e){
             connect.send();
             setTimeout(() => {  
                 json = JSON.parse(connect.responseText);  
+                setUF(json.uf.toLowerCase());
             }, 2000);
 
         }
+        
         else
-            alert("CEP inválido! Só são permitidos números.")
+            alert("CEP inválido! Só são permitidos números.");
+
     }
+    
+    
+    
 });
 
 alertar = document.querySelector("#alertar");
@@ -33,8 +43,18 @@ alertar.addEventListener("click",function (e){
     console.log(nome);
 });
 
+function setUF(e){
+    x = document.querySelectorAll("option");
+    for(i = 0; i<x.length; i++){
+        if(e===x[i].value.toLowerCase()){
+            x[i].selected = true;
+        }
+    }
+}
+
+// Desatualizado, não utilizar.
 $(() => {
-    $('form').on('submit', e => {
+    $('form').on('click', e => {
         const form = e.target;
 
         if (form.checkValidity() === false) {

@@ -7,6 +7,7 @@ export default class Foco{
         this.pessoa.setEmail(email);
         this.cep = cep;
         this.descricao = descricao;
+        this.status = true;
     }
 
     getPessoa(){
@@ -27,6 +28,10 @@ export default class Foco{
 
     setDescricao(desc){
         this.descricao = desc;
+    }
+
+    setDowStatus(){
+        this.status = false;
     }
 
     
