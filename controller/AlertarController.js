@@ -91,7 +91,6 @@ alertar.addEventListener("click",function(e){
     console.log(pessoa);
     console.log(foco);
     adicionarFoco(pessoa,foco);
-    debugger
 
 });
 
@@ -125,10 +124,7 @@ function getListaDeFocos(){
 }
 
 function adicionarFoco(pessoa,foco){
-    console.log("metodo adicionar");
-    console.log(pessoa);
-    console.log(foco);
-    debugger
+   
 
     if(localStorage.getItem("focos")!=null){
         var arrayPessoa = getListaDePessoas();

@@ -1,28 +1,6 @@
-
-if(localStorage.getItem("pessoas")!=null){
-    var arrayPessoa = JSON.parse(localStorage.getItem("pessoas"));
-    var arrayFoco = JSON.parse(localStorage.getItem("focos"));
-    for(i = 0; i<arrayFoco.length; i++){
-        adicionarLista(arrayFoco[i]);
-    }
-}
-else 
-{
-    window.location = "../views/main.html";
-    alert("Não há nenhum foco cadastrado!");
-}
-
-
-
-
-function adicionarLista(){
-
-    var main_list = document.querySelector("ul");
-    main_list.appendChild(criarLi(foco));
-
-}
-
-
+// 
+//  Esse controller tem por objetivo automatizar a criação dos nodes filhos da ul.
+//
 /*
 
     ao final a lista deve ter essa estrutura
@@ -47,6 +25,61 @@ function adicionarLista(){
 </li>
 
 */
+
+
+class Foco{
+    constructor(cpf,cep,descricao){
+        this.cpf = cpf;
+        this.cep = cep;
+        this.uf  = "";
+        this.descricao = descricao;
+        this.status = true;
+    } 
+    setDownStatus(){
+        if(this.quantidade===0)
+            this.status = false;
+        else
+            this.quantidade--;
+    }
+   
+    setUFE(uf){
+        this.uf = uf;
+    }
+}
+
+init();
+
+function init(){
+   p = new Foco("1111.222.222.22","20040007","pegou fogo");
+   p.setUFE("rj");
+   adicionarLista(p);
+}
+
+
+if(localStorage.getItem("pessoas")!=null){
+    var arrayPessoa = JSON.parse(localStorage.getItem("pessoas"));
+    var arrayFoco = JSON.parse(localStorage.getItem("focos"));
+    for(i = 0; i<arrayFoco.length; i++){
+        adicionarLista(arrayFoco[i]);
+    }
+}
+else 
+{
+    window.location = "../views/main.html";
+    alert("Não há nenhum foco cadastrado!");
+}
+
+
+
+
+function adicionarLista(foco){
+
+    var main_list = document.querySelector("ul");
+    main_list.appendChild(criarLi(foco));
+}
+
+
+
 
 
 
@@ -115,12 +148,14 @@ function criarItemcomBadge(q){
 }
 
 function contagem(UF){
-    var tmp = localStorage.getItem("pessoas");
-    var pessoa = JSON.parse(tmp);
     var total = 0;
-    for(i = 0; i<pessoa.length; i++){       
-        if(UF===pessoa[i].cep.toLowerCase()){
-         total++;
+    if(localStorage.getItem("pessoas")!=null){
+        var tmp = localStorage.getItem("pessoas");
+        var pessoa = JSON.parse(tmp);
+        for(i = 0; i<pessoa.length; i++){       
+            if(UF===pessoa[i].cep.toLowerCase()){
+            total++;
+            }
         }
     }
     return total;
